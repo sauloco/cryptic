@@ -1,0 +1,13 @@
+[build]
+  command = "yarn build"
+  publish = "dist"
+
+[dev]
+  command = "yarn serve"
+  targetPort = 8080
+  port = 8888
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/coincap"
+  status = 200

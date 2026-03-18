@@ -1,4 +1,4 @@
-const url = "https://api.coincap.io/v2";
+const url = "/api";
 
 async function getAssets(limit = 100, offset = 0) {
   try {
@@ -46,16 +46,29 @@ async function getAssetHistory(coin) {
 }
 
 async function getMarkets(coin, limit = 5) {
-  let res = await fetch(`${url}/assets/${coin}/markets?limit=${limit}`);
-  const { data } = await res.json();
-  return data;
+  try {
+    const response = await fetch(
+      `${url}/assets/${coin}/markets?limit=${limit}`
+    );
+    const { data } = await response.json();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
 }
 
 async function getExchange(id) {
-  let res = await fetch(`${url}/exchanges/${id}`);
-  const { data } = await res.json();
+  try {
+    const response = await fetch(`${url}/exchanges/${id}`);
+    const { data } = await response.json();
 
-  return data;
+    return data;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
 }
 
 export default {

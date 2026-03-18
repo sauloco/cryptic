@@ -62,13 +62,15 @@
         </div>
 
         <div class="my-10 sm:mt-0 flex flex-col justify-center text-center">
-          <px-button @custom-click="toggleFromUsd"> {{ convertion }} </px-button>
+          <px-button @custom-click="toggleFromUsd">
+            {{ convertion }}
+          </px-button>
           <div class="flex flex-row my-5">
             <label class="w-full" for="convertValue">
               <input
                 id="convertValue"
                 type="number"
-                :placeholder="`0.00  ${fromUsd ?  'USD' : asset.symbol }`"
+                :placeholder="`0.00  ${fromUsd ? 'USD' : asset.symbol}`"
                 v-model="convertValue"
                 class="text-center focus:outline-none focus:shadow-outline border border-white bg-transparent text-white rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
               />
@@ -81,7 +83,6 @@
           <span v-else class="text-xl">
             {{ convertedValue | dollar }} USD
           </span>
-          
         </div>
       </div>
 
@@ -154,27 +155,28 @@ export default {
 
   computed: {
     convertion() {
-      return this.fromUsd ? `USD to ${this.asset.symbol}` : `${this.asset.symbol} to USD`
+      return this.fromUsd
+        ? `USD to ${this.asset.symbol}`
+        : `${this.asset.symbol} to USD`;
     },
     convertedValue() {
       if (!this.convertValue) {
-        return '0.00';
-      } 
-      const result = this.fromUsd 
-      ? this.convertValue / this.asset.priceUsd 
-      : this.convertValue * this.asset.priceUsd;
+        return "0.00";
+      }
+      const result = this.fromUsd
+        ? this.convertValue / this.asset.priceUsd
+        : this.convertValue * this.asset.priceUsd;
 
-      const decimalPart = result.toString().split('.')[1];
+      const decimalPart = result.toString().split(".")[1];
       let fixedTo = 0;
       if (decimalPart) {
-        const decimalPartAsArray = decimalPart.split('');
+        const decimalPartAsArray = decimalPart.split("");
         const firstDigitNonZero = decimalPartAsArray.filter(v => Number(v))[0];
         fixedTo = decimalPartAsArray.indexOf(firstDigitNonZero);
       }
 
       return result.toFixed(fixedTo + 2).toString();
-
-    }, 
+    },
     colors() {
       return [AssetsMainColor[this.asset.symbol.toLowerCase()] || "orange"];
     },
@@ -249,7 +251,7 @@ export default {
     }
   },
   watch: {
-    $route () {
+    $route() {
       this.getCoin();
     }
   }

@@ -26,7 +26,7 @@ export default {
       isLoading: false,
       loaderColor: "#90cdf4",
       sortCriteria: "rank",
-      sortDirectionUp: true,
+      sortDirectionUp: true
     };
   },
 
@@ -55,12 +55,12 @@ export default {
       if (!this.sortDirectionUp) {
         this.assets.reverse();
       }
-    },
+    }
   },
   async created() {
     this.isLoading = true;
     this.assets = await api.getAssets();
     this.isLoading = false;
-  },
+  }
 };
 </script>

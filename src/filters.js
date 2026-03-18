@@ -25,6 +25,6 @@ const rankFilter = value => {
 
 const fixedFour = value => {
   return value.toFixed(4);
-}
+};
 
 export { dollarFilter, percentFilter, rankFilter, fixedFour };

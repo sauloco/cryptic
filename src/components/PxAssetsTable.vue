@@ -142,17 +142,17 @@ export default {
     },
     sortDirectionUp: {
       type: Boolean,
-      default: true,
+      default: true
     },
     sortCriteria: {
       type: String,
-      default: ''
+      default: ""
     }
   },
 
   data() {
     return {
-      filter: "",
+      filter: ""
     };
   },
 
