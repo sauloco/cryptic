@@ -7,6 +7,10 @@
     "build": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "engines": {
+    "node": "24",
+    "packageManager": "yarn"
+  },
   "dependencies": {
     "@saeris/vue-spinners": "^1.0.8",
     "chart.js": "^2.9.4",
